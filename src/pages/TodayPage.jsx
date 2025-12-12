@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import CurrentWeatherCard from "../components/weather/CurrentWeatherCard.jsx";
 import SearchBar from "../components/weather/SearchBar.jsx";
 import UnitsToggle from "../components/weather/UnitsToggle.jsx";
 
@@ -11,6 +11,7 @@ import UnitsToggle from "../components/weather/UnitsToggle.jsx";
 function TodayPage() {
     const [city, setCity] = useState("London");
     const [units, setUnits] = useState("metric");
+    const [lastUpdated, setLastUpdated] = useState("Just now");
 
     const handleSearch = (newCity) => {
         setCity(newCity);
@@ -43,6 +44,14 @@ function TodayPage() {
                 For now this is just mock text controlled by state. Tomorrow we will
                 connect it to the Open-Meteo API.
             </p>
+            <p>
+                Last updated: {lastUpdated}
+            </p>
+            <CurrentWeatherCard
+                city={city}
+                temperature={18}         // mock temperature
+                description="Sunny"      // mock conditions
+            />
         </section>
     );
 }
