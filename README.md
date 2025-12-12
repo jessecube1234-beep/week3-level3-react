@@ -36,3 +36,8 @@ Check out the **TS template** for information on how to integrate TypeScript and
   - `city`
 
   as props, and renders them (with mock values passed from `TodayPage`).
+
+  # Day 3 – Small Homework
+
+- Beautify UI
+
