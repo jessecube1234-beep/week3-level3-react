@@ -41,3 +41,9 @@ Check out the **TS template** for information on how to integrate TypeScript and
 
 - Beautify UI
 
+
+  # Day 4 - Implement the HourlyForecastList
+
+-  Beautify the UI
+
+
