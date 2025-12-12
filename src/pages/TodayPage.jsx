@@ -11,7 +11,7 @@ import UnitsToggle from "../components/weather/UnitsToggle.jsx";
 function TodayPage() {
     const [city, setCity] = useState("London");
     const [units, setUnits] = useState("metric");
-    const [lastUpdated, setLastUpdated] = useState("Just now");
+    const [lastUpdated] = useState("Just now");
 
     const handleSearch = (newCity) => {
         setCity(newCity);
