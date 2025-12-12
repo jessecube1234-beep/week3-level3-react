@@ -1,5 +1,7 @@
+
 @use "./variables" as *;
-@import "bootstrap/scss/bootstrap";
+
+@import url("bootstrap/scss/bootstrap");
 
 *,
 *::before,
