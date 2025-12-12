@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useWeather } from "../hooks/useWeather.js";
 import CurrentWeatherCard from "../components/weather/CurrentWeatherCard.jsx";
 import SearchBar from "../components/weather/SearchBar.jsx";
 import UnitsToggle from "../components/weather/UnitsToggle.jsx";
+
+// Bootstrap imports
+import Spinner from 'react-bootstrap/Spinner';
 
 /**
  * Initial Today page.
@@ -9,51 +13,47 @@ import UnitsToggle from "../components/weather/UnitsToggle.jsx";
  */
 
 function TodayPage() {
-    const [city, setCity] = useState("London");
-    const [units, setUnits] = useState("metric");
-    const [lastUpdated] = useState("Just now");
+  // Object deconstruction to get state and updater function
+  const [city, setCity] = useState("London");
+  const [units, setUnits] = useState("metric");
 
-    const handleSearch = (newCity) => {
-        setCity(newCity);
-        // Day 3: trigger API request here
-    };
+  // Call the hook similar to how we call the react hooks
+  const weatherState = useWeather(city, units);
 
-    const handleUnitsChange = (newUnits) => {
-        setUnits(newUnits);
-        // Day 3: re-fetch or convert data here
-    };
+  const handleSearch = (newCity) => {
+    setCity(newCity);
+  };
 
-    return (
-        <section className="card">
-            <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem" }}>
-                <SearchBar onSearch={handleSearch} />
-                <UnitsToggle units={units} onChange={handleUnitsChange} />
-            </div>
+  const handleUnitsChange = (newUnits) => {
+    setUnits(newUnits);
+  };
 
-            <div style={{ marginTop: "1rem" }}>
-                <h2>
-                    Today’s weather for <span>{city}</span>
-                </h2>
-            </div>
+  return (
+    <section>
+      <div className="card" style={{ marginBottom: "1rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem" }}>
+          <SearchBar onSearch={handleSearch} />
+          <UnitsToggle units={units} onChange={handleUnitsChange} />
+        </div>
 
-            <p>
-                Units: <strong>{units === "metric" ? "Metric (°C, km/h)" : "Imperial (°F, mph)"}</strong>
-            </p>
+        <p style={{ marginTop: "0.75rem", fontSize: "0.9rem" }}>
+          Showing weather for <strong>{city}</strong> ({units} units).
+        </p>
 
-            <p>
-                For now this is just mock text controlled by state. Tomorrow we will
-                connect it to the Open-Meteo API.
-            </p>
-            <p>
-                Last updated: {lastUpdated}
-            </p>
-            <CurrentWeatherCard
-                city={city}
-                temperature={18}         // mock temperature
-                description="Sunny"      // mock conditions
-            />
-        </section>
-    );
+        {weatherState.error && <p style={{ color: "#f97373" }}>{weatherState.error}</p>}
+      </div>
+
+      {weatherState.loading ? (
+        <Spinner animation="border" />
+      ) : (
+        <CurrentWeatherCard
+          current={weatherState.current}
+          location={weatherState.location}
+          units={units}
+        />
+      )}
+    </section>
+  );
 }
 
 export default TodayPage;
