@@ -10,6 +10,8 @@
 body {
   margin: 0;
   font-family: $font-main;
+  font-size: 16px; // slightly larger base size
+  line-height: 1.6;
   background: radial-gradient(circle at top, #111827 0, $color-bg 50%);
   color: $color-text-main;
 }
@@ -21,37 +23,43 @@ body {
 .app-shell {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 2rem; // more breathing room
 }
 
 .card {
   background-color: $color-surface;
   border-radius: $radius-lg;
   box-shadow: $shadow-soft;
-  padding: 1.5rem;
+  padding: 2rem; // more consistent spacing
   color: #fff;
 }
 
 .app-header {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 1.5rem;
+  align-items: center; // improved alignment
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
 
   &__title {
-    font-size: 1.5rem;
+    font-size: 1.75rem; // clearer visual hierarchy
     font-weight: 600;
   }
 
   &__subtitle {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #9ca3af;
   }
 }
 
 .app-footer {
-  margin-top: 2rem;
-  font-size: 0.8rem;
+  margin-top: 3rem;
+  font-size: 0.85rem;
   color: $color-text-secondary;
   text-align: center;
+}
+
+.daily-card {
+  border-radius: $radius-lg; 
 }
