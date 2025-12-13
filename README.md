@@ -46,4 +46,7 @@ Check out the **TS template** for information on how to integrate TypeScript and
 
 -  Beautify the UI
 
+  # Day 5 - Application Deployment
+
+-   https://react-vite-week3-netlify.netlify.app/
 
