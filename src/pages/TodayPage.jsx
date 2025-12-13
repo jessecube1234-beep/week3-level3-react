@@ -46,17 +46,20 @@ function TodayPage() {
 
       {weatherState.loading ? (
         <Spinner animation="border" />
-      ) : (
-        <CurrentWeatherCard
-          current={weatherState.current}
-          location={weatherState.location}
-          units={units}
-        />,
-        <HourlyForecastList
-        hourly={weatherState.hourly}
-        units={units}
-        />
-      )}
+      ) : weatherState.current ? (
+        <>
+          <CurrentWeatherCard
+            current={weatherState.current}
+            location={weatherState.location}
+            units={units}
+          />
+          <HourlyForecastList
+            hourly={weatherState.hourly}
+            units={units}
+          />
+        </>
+      ) : null}
+
     </section>
   );
 }
