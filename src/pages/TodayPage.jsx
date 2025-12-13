@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useWeather } from "../hooks/useWeather.js";
+import HourlyForecastList from "../components/weather/HourlyForecastList.jsx";
 import CurrentWeatherCard from "../components/weather/CurrentWeatherCard.jsx";
 import SearchBar from "../components/weather/SearchBar.jsx";
 import UnitsToggle from "../components/weather/UnitsToggle.jsx";
@@ -45,13 +46,20 @@ function TodayPage() {
 
       {weatherState.loading ? (
         <Spinner animation="border" />
-      ) : (
-        <CurrentWeatherCard
-          current={weatherState.current}
-          location={weatherState.location}
-          units={units}
-        />
-      )}
+      ) : weatherState.current ? (
+        <>
+          <CurrentWeatherCard
+            current={weatherState.current}
+            location={weatherState.location}
+            units={units}
+          />
+          <HourlyForecastList
+            hourly={weatherState.hourly}
+            units={units}
+          />
+        </>
+      ) : null}
+
     </section>
   );
 }
